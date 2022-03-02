@@ -13,8 +13,12 @@ import {
 } from "@heroicons/react/outline";
 import { HomeIcon } from "@heroicons/react/solid";
 import HeaderIcon from "./HeaderIcon";
+import { signOut, useSession } from "next-auth/react";
+import profile from "../public/gerv.jpg";
 
 function Header() {
+  const { data: session } = useSession();
+
   return (
     <div className="shadow-lg flex items-center sticky z-50 top-0 bg-white p-2 lg:p-5 ">
       <div className="flex items-center">
@@ -42,9 +46,18 @@ function Header() {
           <HeaderIcon Icon={UserGroupIcon} />
         </div>
       </div>
-      <div className="flex items-center sm:space-x-2 justify-end">
+      <div className="flex items-center sm:space-x-2 justify-end ">
         {/* profile pic*/}
-        <p className="font-semibold pr-2 whitespace-nowrap">Mr Gerv</p>
+        <img
+          src={session.user.image}
+          alt="profile"
+          onClick={signOut}
+          className="rounded-full cursor-pointer w-10 h-10"
+        />
+
+        <p className="font-semibold pr-2 whitespace-nowrap" onClick={signOut}>
+          {session.user.name}
+        </p>
         <ViewGridIcon className="icon" />
         <ShoppingCartIcon className="icon" />
         <BellIcon className="icon" />
