@@ -1,5 +1,6 @@
-import { getApp, getApps, initializeApp } from "firebase/app";
-import { getFirestore, collection, getDocs } from "firebase/firestore/lite";
+import { initializeApp, getApps, getApp } from "firebase/app";
+import { getFirestore } from "firebase/firestore";
+import { getStorage } from "firebase/storage";
 const firebaseConfig = {
   apiKey: "AIzaSyB_WzWiCmhagGaUHQZIOMvneDYvEmnoHPw",
   authDomain: "facebook-clone-41534.firebaseapp.com",
@@ -8,7 +9,7 @@ const firebaseConfig = {
   messagingSenderId: "255807706656",
   appId: "1:255807706656:web:85a97a858c072abba9ce45",
 };
-const app = !getApp.length ? initializeApp(firebaseConfig) : app();
+const app = !getApps().length ? initializeApp(firebaseConfig) : getApp();
 const db = getFirestore();
 const storage = getStorage();
 
